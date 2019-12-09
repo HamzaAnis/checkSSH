@@ -1,4 +1,4 @@
-# Check SSh
+# Check SSH
 
 This checks in parallel if the ssh session can be possible on the list of hosts.
 

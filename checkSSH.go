@@ -16,8 +16,8 @@ type config struct {
 	IP []string `yaml:"ip"`
 }
 
-func (c *config) getConfig() {
-	file, err := ioutil.ReadFile("ip.yaml")
+func (c *config) getConfig(fileName string) {
+	file, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		log.Printf("Invalid config file   #%v ", err)
 	}
@@ -42,14 +42,13 @@ func checkSSH(hosts []string, port string, successChan, errorChan chan string) {
 	}
 }
 
-var wg sync.WaitGroup
-
-func main() {
+func perform(configFileName string) {
+	var wg sync.WaitGroup
 	successChan := make(chan string)
 	errorChan := make(chan string)
 
 	var c config
-	c.getConfig()
+	c.getConfig(configFileName)
 
 	threads := 10
 	var splits [][]string

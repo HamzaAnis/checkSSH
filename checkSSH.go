@@ -27,7 +27,7 @@ func (c *config) getConfig(fileName string) {
 	}
 }
 
-func checkSSH(hosts []string, port string, successChan, errorChan chan string) {
+func checkSSH(hosts []string, port string, successChan, errorChan chan string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	for _, host := range hosts {
 		timeout := time.Second
@@ -42,7 +42,8 @@ func checkSSH(hosts []string, port string, successChan, errorChan chan string) {
 	}
 }
 
-func perform(configFileName string) {
+// Perform takes in the yaml file name containing the ips and perform the operation
+func Perform(configFileName string) {
 	var wg sync.WaitGroup
 	successChan := make(chan string)
 	errorChan := make(chan string)
@@ -96,7 +97,7 @@ func perform(configFileName string) {
 	}()
 
 	for _, split := range splits {
-		go checkSSH(split, "22", successChan, errorChan)
+		go checkSSH(split, "22", successChan, errorChan, &wg)
 		wg.Add(1)
 	}
 	wg.Wait()

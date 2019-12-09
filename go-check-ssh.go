@@ -1,4 +1,4 @@
-package go-check-ssh
+package github.com/HamzaAnis/go-check-ssh
 
 import (
 	"fmt"

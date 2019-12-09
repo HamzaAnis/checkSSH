@@ -1,4 +1,4 @@
-module checkSSSH
+module go-check-ssh
 
 go 1.13
 

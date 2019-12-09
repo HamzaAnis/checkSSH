@@ -1,4 +1,4 @@
-package main
+package go-check-ssh
 
 import (
 	"fmt"

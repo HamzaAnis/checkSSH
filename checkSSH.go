@@ -43,7 +43,7 @@ func checkSSH(hosts []string, port string, successChan, errorChan chan string, w
 }
 
 // Perform takes in the yaml file name containing the ips and perform the operation
-func Perform(configFileName string) {
+func Perform(configFileName string, routines int) {
 	var wg sync.WaitGroup
 	successChan := make(chan string)
 	errorChan := make(chan string)
@@ -51,10 +51,9 @@ func Perform(configFileName string) {
 	var c config
 	c.getConfig(configFileName)
 
-	threads := 10
 	var splits [][]string
 
-	chunk := (len(c.IP) + threads - 1) / threads
+	chunk := (len(c.IP) + routines - 1) / routines
 
 	for i := 0; i < len(c.IP); i += chunk {
 		end := i + chunk

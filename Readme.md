@@ -27,6 +27,8 @@ package main
 import "github.com/HamzaAnis/checkSSH"
 
 func main() {
-	checkSSH.Perform("ip.yaml")
+	checkSSH.Perform("ip.yaml",10)
 }
 ```
+
+Here 10 go routines will run and check the sessions in parallel and append to the log files.

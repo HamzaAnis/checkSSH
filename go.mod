@@ -1,4 +1,4 @@
-module github.com/HamzaAnis/go-check-ssh
+module github.com/HamzaAnis/checkSSH
 
 go 1.13
 

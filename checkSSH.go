@@ -86,10 +86,10 @@ func Perform(configFileName string, routines int) {
 					panic(err)
 				}
 			case successIP := <-successChan:
-				if _, err = errorFile.WriteString(successIP + " [SUCCESS]\n"); err != nil {
+				if _, err = successFile.WriteString(successIP + " [SUCCESS]\n"); err != nil {
 					panic(err)
 				}
-				fmt.Println(successIP + " [SUCCESS")
+				fmt.Println(successIP + " [SUCCESS]")
 			}
 			count++
 		}
